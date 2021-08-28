@@ -72,8 +72,8 @@ class Button:
 
     def __init__(
         self,
-        label: str = None,
-        custom_id: str = None,
+        label: str,
+        custom_id: str,
         disabled: bool = False,
         style: ButtonStyles = ButtonStyles.PRIMARY,
         emoji: PartialEmoji = None,
@@ -119,7 +119,7 @@ class Button:
 class LinkButton:
     """Represents a partial Discord emoji"""
 
-    def __init__(self, label: str = None, url: str = None, disabled: bool = False):
+    def __init__(self, label: str, url: str, disabled: bool = False):
         """
         Args:
             label (str): Label of the button.
@@ -156,8 +156,8 @@ class SelectMenu:
 
         def __init__(
             self,
-            label: str = None,
-            value: str = None,
+            label: str,
+            value: str,
             description: str = None,
             emoji: PartialEmoji = None,
             default: bool = False,
