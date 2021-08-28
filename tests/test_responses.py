@@ -6,6 +6,7 @@ from dispike.creating.components import (
     LinkButton,
     SelectMenu,
 )
+from dispike.errors.components import ComponentCombinationError
 from dispike.incoming.incoming_interactions import IncomingDiscordSlashInteraction
 from dispike.response import DiscordResponse
 from dispike.helper.embed import Embed
@@ -155,6 +156,19 @@ def test_invalid_content():
 
     with pytest.raises(TypeError):
         _created_content = DiscordResponse(content="Test", tts="invalid")
+
+
+def test_invalid_action_row():
+    with pytest.raises(ComponentCombinationError):
+        _created_content = DiscordResponse(action_row=ActionRow(
+            components=[
+                Button(label="Test", custom_id="test"), SelectMenu(custom_id="test", disabled=False, max_values=1, min_values=1, options=[
+                    SelectMenu.SelectMenuOption(
+                        label="test", value="test"
+                    )
+                ], placeholder="Select")
+            ]
+        ))
 
 
 def test_type_response_update():
